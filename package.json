@@ -1,0 +1,14 @@
+{
+    "name": "simple-logo-maker",
+    "version": "1.0.0",
+    "description": "A simple logo maker application",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "author": "Ezekeil",
+    "license": "MIT",
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
