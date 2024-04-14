@@ -5,6 +5,12 @@ function generateLogo() {
   var shape = document.getElementById('shapeInput').value;
   var shapeColor = document.getElementById('shapeColorInput').value;
 
+  // Check if the input text length is not equal to 3
+  if (text.length !== 3) {
+    alert('Please enter exactly three characters.');
+    return;
+  }
+
   // Generate SVG content
   var svgContent = `
     <svg width="300" height="200">
@@ -18,13 +24,22 @@ function generateLogo() {
       `;
       break;
     case 'triangle':
+      // Make the triangle the same size as the circle
+      var triangleHeight = 173.21; // Height of an equilateral triangle with sides equal to the diameter of the circle (200)
+      var triangleWidth = 200; // Width of an equilateral triangle with sides equal to the diameter of the circle
+      var triangleX = 150 - (triangleWidth / 2);
+      var triangleY = 100 - (triangleHeight / 2);
       svgContent += `
-        <polygon points="150,50 100,150 200,150" fill="${shapeColor}" />
+        <polygon points="${triangleX},${triangleY + triangleHeight} ${triangleX + triangleWidth},${triangleY + triangleHeight} 150,${triangleY}" fill="${shapeColor}" />
       `;
       break;
     case 'square':
+      // Make the square the same size as the circle
+      var squareSize = 200; // Adjust as needed
+      var squareX = 150 - (squareSize / 2);
+      var squareY = 100 - (squareSize / 2);
       svgContent += `
-        <rect x="100" y="50" width="100" height="100" fill="${shapeColor}" />
+        <rect x="${squareX}" y="${squareY}" width="${squareSize}" height="${squareSize}" fill="${shapeColor}" />
       `;
       break;
     default:
@@ -32,26 +47,29 @@ function generateLogo() {
       return;
   }
 
-  // Calculate text position based on shape
-  var textX, textY;
+  // Calculate text position and font size based on shape
+  var textX, textY, fontSize;
   switch (shape.toLowerCase()) {
     case 'circle':
       textX = 150;
       textY = 100;
+      fontSize = 100; // Maximum font size for circle
       break;
     case 'triangle':
       textX = 150;
-      textY = 125; // Adjust Y position for triangle
+      textY = 135; // Adjust Y position for triangle
+      fontSize = 30; // Maximum font size for triangle
       break;
     case 'square':
       textX = 150;
       textY = 100;
+      fontSize = 100; // Maximum font size for square
       break;
   }
 
   // Add text element
   svgContent += `
-    <text x="${textX}" y="${textY}" text-anchor="middle" fill="${textColor}" font-size="50">${text}</text>
+    <text x="${textX}" y="${textY}" text-anchor="middle" fill="${textColor}" font-size="${fontSize}">${text}</text>
   `;
 
   // Close SVG element
