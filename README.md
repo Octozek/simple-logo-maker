@@ -39,7 +39,7 @@ To use the Simple Logo Maker, follow these steps:
 
 ## Demo Video
 
-Check out this [demo video](https://youtu.be/mDGr2TRe3z8) to see the Simple Logo Maker in action!
+Check out this [demo video](https://www.youtube.com/watch?v=mDGr2TRe3z8&ab_channel=OctozekOwens) to see the Simple Logo Maker in action!
 
 ## Contributing
 
