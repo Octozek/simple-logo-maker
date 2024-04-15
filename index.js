@@ -1,5 +1,6 @@
 const readline = require('readline');
 const fs = require('fs');
+const path = require('path'); // Import the 'path' module
 const { generateLogo } = require('./lib/logoGenerator');
 
 const rl = readline.createInterface({
@@ -22,9 +23,16 @@ async function run() {
     const shape = await prompt('Choose a shape (circle, triangle, square): ');
     const shapeColor = await prompt('Enter shape color (keyword or hex): ');
 
-    await generateLogo(text, textColor, shape, shapeColor);
+    // Ask for the file path to save the SVG file
+    const filePath = await prompt('Enter the file path to save the SVG file (press enter for default location): ');
 
-    console.log('Generated logo.svg');
+    // Generate default file path if none is provided
+    const defaultFilePath = filePath ? filePath : path.join(__dirname, 'logo.svg');
+
+    // Call generateLogo with the specified file path
+    await generateLogo(text, textColor, shape, shapeColor, defaultFilePath);
+
+    console.log(`Generated ${defaultFilePath}`);
   } catch (error) {
     console.error('An error occurred:', error);
   } finally {
